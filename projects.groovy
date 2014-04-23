@@ -12,11 +12,9 @@ import org.kohsuke.args4j.Argument
 class CreateProject extends SshCommand {
   @Inject GerritApi gApi
   @Argument(usage = "project name", metaVar = "NAME")
-  String name 
+  String projectName 
   void run() {
-    ProjectInput input = new ProjectInput()
-    input.name = name
-    gApi.projects().create(input)
+    gApi.projects().name(projectName).create()
     stdout.println("Project created: " + name)
   }
 }
